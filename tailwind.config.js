@@ -1,12 +1,4 @@
-# Instalaciones
-
-- Tailwind - npm install -D tailwindcss postcss autoprefixer + npx tailwindcss init -p
-
-# Config Tailwind
-
-- tailwind.config.js
-
- @type {import('tailwindcss').Config} 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
@@ -20,12 +12,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}`
-
-
-
-- globals.css
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+}
