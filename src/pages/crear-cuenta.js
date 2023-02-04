@@ -10,7 +10,7 @@ const CrearCuenta = () => {
 
     //Accceder al state
     const AuthContext = useContext(authContext);
-    const { usuarioAutenticado, token } = AuthContext;
+    const { registrarUsuario, token } = AuthContext;
 
     // console.log(token);
     // useEffect(() => {
@@ -33,7 +33,7 @@ const CrearCuenta = () => {
             password: Yup.string().required('El password es obligatorio').min(6, 'El password debe contener al menos 6 caracteres'),
         }),
         onSubmit: valores => {
-            console.log(valores);
+            registrarUsuario(valores);
 
         }
     })
