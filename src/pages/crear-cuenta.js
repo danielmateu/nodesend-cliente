@@ -1,9 +1,25 @@
 import { Layout } from 'components/Layout'
+import authContext from 'context/auth/authContext'
 import { useFormik } from 'formik'
+import { CONFIG_FILES } from 'next/dist/shared/lib/constants'
+import { useContext, useEffect } from 'react'
 import * as Yup from 'yup'
 
 
 const CrearCuenta = () => {
+
+    //Accceder al state
+    const AuthContext = useContext(authContext);
+    const { usuarioAutenticado, token } = AuthContext;
+
+    // console.log(token);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         usuarioAutenticado('Daniel Mateu')
+    //     }, 3000);
+    // }, [usuarioAutenticado])
+
+
     //Formulario y validación con Formik y Yup
     const formik = useFormik({
         initialValues: {
@@ -49,7 +65,7 @@ const CrearCuenta = () => {
                                         <div className="my-2 text-red-400 border-l-4 border-red-400 bg-red-200 text-center rounded hover:bg-red-400 hover:text-white transition-colors py-2">
                                             <p>{formik.errors.nombre}</p>
                                         </div>
-                                    ): null
+                                    ) : null
                                 }
                             </div>
                             <div className="mb-4 flex flex-col">
@@ -68,7 +84,7 @@ const CrearCuenta = () => {
                                         <div className="my-2 text-red-400 border-l-4 border-red-400 bg-red-200 text-center rounded hover:bg-red-400 hover:text-white transition-colors py-2">
                                             <p>{formik.errors.email}</p>
                                         </div>
-                                    ): null
+                                    ) : null
                                 }
                             </div>
                             <div className="mb-4 flex flex-col">
@@ -87,7 +103,7 @@ const CrearCuenta = () => {
                                         <div className="my-2 text-red-400 border-l-4 border-red-400 bg-red-200 text-center rounded hover:bg-red-400 hover:text-white transition-colors py-2">
                                             <p>{formik.errors.password}</p>
                                         </div>
-                                    ): null
+                                    ) : null
                                 }
                             </div>
                             <input type="submit" value='Crear cuenta' className="w-full bg-green-200 hover:bg-green-300 transition-colors py-4 rounded mt-2" />

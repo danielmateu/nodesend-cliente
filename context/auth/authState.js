@@ -1,6 +1,7 @@
 import { createContext, useReducer } from 'react'
 import authContext from './authContext';
 import authReducer from './authReducer';
+import { USUARIO_AUTENTICADO } from 'types';
 
 
 
@@ -19,7 +20,10 @@ const AuthState = ({ children }) => {
 
     //Usuario Autenticado
     const usuarioAutenticado = (nombre) => {
-        
+        dispatch({
+            type: USUARIO_AUTENTICADO,
+            payload: nombre
+        })
     }
 
 
@@ -29,7 +33,8 @@ const AuthState = ({ children }) => {
                 token: state.token,
                 autenticado: state.autenticado,
                 usuario: state.usuario,
-                mensaje: state.mensaje
+                mensaje: state.mensaje,
+                usuarioAutenticado
             }}
         >
             {children}
