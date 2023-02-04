@@ -1,10 +1,11 @@
+import { Layout } from 'components/Layout'
 import React from 'react'
 
 const Login = () => {
   return (
-    <div>
-        <h1>Login Page in NextJs</h1>
-    </div>
+    <Layout>
+        <h1>Login</h1>
+    </Layout>
   )
 }
 
