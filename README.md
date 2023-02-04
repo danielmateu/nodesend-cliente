@@ -2,6 +2,7 @@
 
 - Tailwind 
 - Formik + yup para validación de formularios
+- axios
 
 # Config Tailwind
 
