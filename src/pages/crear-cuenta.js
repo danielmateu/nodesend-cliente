@@ -1,7 +1,18 @@
 import { Layout } from 'components/Layout'
+import { useFormik } from 'formik'
 
 
 const CrearCuenta = () => {
+
+    //Formulario y validación con Formik y Yup
+    const formik = useFormik({
+        initialValues: {
+            nombre: '',
+            email: '',
+            password: ''
+        },
+    })
+
     return (
         <Layout>
             {/* <h1>Crear-cuenta</h1> */}

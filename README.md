@@ -1,6 +1,7 @@
 # Instalaciones
 
-- Tailwind - npm install -D tailwindcss postcss autoprefixer + npx tailwindcss init -p
+- Tailwind 
+- Formik + yup para validación de formularios
 
 # Config Tailwind
 
