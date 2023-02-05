@@ -1,6 +1,6 @@
 // const initialState = {}
 
-import { LIMPIAR_ALERTA, REGISTRO_ERROR, REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from "types"
+import { LIMPIAR_ALERTA, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from "types"
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -17,7 +17,16 @@ export default (state, action) => {
                 mensaje: action.payload,
             }
 
+        case LOGIN_EXITOSO:
+            localStorage.setItem('token', action.payload)
+            return {
+                ...state,
+                token: action.payload,
+                autenticado: true,
+            }
+
         case REGISTRO_ERROR:
+        case LOGIN_ERROR:
             return {
                 ...state,
                 mensaje: action.payload,

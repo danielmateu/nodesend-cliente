@@ -1,9 +1,29 @@
+import { Alerta } from 'components/Alerta'
 import { Layout } from 'components/Layout'
+import authContext from 'context/auth/authContext'
 import { useFormik } from 'formik'
+import { useRouter } from 'next/router'
+import { useContext, useEffect } from 'react'
 import * as Yup from 'yup'
 
 
+
 const Login = () => {
+
+  //Definir el context
+  const AuthContext = useContext(authContext);
+  const { iniciarSesion, mensaje, autenticado } = AuthContext;
+
+  //Next Router
+  const router = useRouter();
+
+  useEffect(() => {
+    if(autenticado){
+      router.push('/');
+    }
+  }, [autenticado])
+  
+
   //Formulario y validación con Formik y Yup
   const formik = useFormik({
     initialValues: {
@@ -15,7 +35,8 @@ const Login = () => {
       password: Yup.string().required('El password es obligatorio').min(6, 'El password debe contener al menos 6 caracteres'),
     }),
     onSubmit: valores => {
-      console.log(valores);
+      // console.log(valores);
+      iniciarSesion(valores)
 
     }
   })
@@ -68,7 +89,8 @@ const Login = () => {
                   ) : null
                 }
               </div>
-              <input type="submit" value='Iniciar sesión' className="w-full bg-sky-200 hover:bg-sky-300 transition-colors py-4 rounded mt-2" />
+              <input type="submit" value='Iniciar sesión' className="w-full bg-sky-200 hover:bg-sky-300 transition-colors py-4 rounded my-2" />
+              {mensaje && <Alerta />}
             </form>
           </div>
         </div>
