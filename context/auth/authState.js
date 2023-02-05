@@ -1,8 +1,7 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useEffect, useReducer } from 'react'
 import authContext from './authContext';
 import authReducer from './authReducer';
-import { CERRANDO_SESION, CERRAR_SESION, LIMPIAR_ALERTA, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from 'types';
-
+import { CERRAR_SESION, LIMPIAR_ALERTA, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from 'types';
 
 import clientAxios from 'config/axios';
 import tokenAuth from 'config/tokenAuth';
@@ -12,7 +11,7 @@ const AuthState = ({ children }) => {
 
     //Definir un state inicial
     const initialState = {
-        token: typeof window !=='undefined' ? localStorage.getItem('token') : '',
+        token: typeof window !== 'undefined' ? localStorage.getItem('token') : '',
         autenticado: null,
         usuario: null,
         mensaje: null
@@ -23,7 +22,7 @@ const AuthState = ({ children }) => {
 
     //Registrar nuevos usuarios
     const registrarUsuario = async datos => {
-        try { 
+        try {
             const respuesta = await clientAxios.post('/api/usuarios', datos);
             // console.log(respuesta.data.msg);
             dispatch({
@@ -31,8 +30,8 @@ const AuthState = ({ children }) => {
                 payload: respuesta.data.msg
             })
 
-            
-        }catch(error) {
+
+        } catch (error) {
             // console.log(error.response.data.msg);
             dispatch({
                 type: REGISTRO_ERROR,
@@ -45,7 +44,7 @@ const AuthState = ({ children }) => {
             dispatch({
                 type: LIMPIAR_ALERTA
             })
-        },3000);
+        }, 3000);
     }
 
     //authenticate users    
@@ -71,13 +70,13 @@ const AuthState = ({ children }) => {
             dispatch({
                 type: LIMPIAR_ALERTA
             })
-        },3000);
+        }, 3000);
     }
 
     //Return the user authenticated for the JWT
     const usuarioAutenticado = async () => {
         const token = localStorage.getItem('token');
-        if(token) {
+        if (token) {
             //Function to send the token by headers
             tokenAuth(token);
         }
@@ -85,21 +84,24 @@ const AuthState = ({ children }) => {
         try {
             const respuesta = await clientAxios.get('/api/auth');
             // console.log(respuesta);
-            if(respuesta.data.usuario) {
+            if (respuesta.data.usuario) {
                 dispatch({
                     type: USUARIO_AUTENTICADO,
                     payload: respuesta.data.usuario
                 })
             }
-        }catch(error){
-            console.log(error);
+        } catch (error) {
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: error.response.data.msg
+            })
         }
     }
 
     //Close sesion
-    const cerrarSesion = () => {
+    const cerrarSesion = async() => {
         dispatch({
-            type: CERRAR_SESION,
+            type: CERRAR_SESION
         })
 
         // console.log('Cerrar Sesion');

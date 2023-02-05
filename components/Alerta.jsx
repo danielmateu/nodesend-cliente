@@ -9,7 +9,7 @@ export const Alerta = () => {
     const { mensaje } = AuthContext;
 
     return (
-        <div className='bg-gray-600 p-4 text-center rounded text-lg text-red-600 font-semibold'>
+        <div className='bg-gray-200 p-4 text-center rounded text-lg text-red-400 font-semibold'>
             {mensaje}
         </div>
     )
