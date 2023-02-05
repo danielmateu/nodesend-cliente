@@ -1,6 +1,6 @@
 // const initialState = {}
 
-import { LIMPIAR_ALERTA, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from "types"
+import { CERRANDO_SESION, CERRAR_SESION, LIMPIAR_ALERTA, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from "types"
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -36,6 +36,15 @@ export default (state, action) => {
             return {
                 ...state,
                 mensaje: null
+            }
+
+        case CERRAR_SESION:
+            localStorage.removeItem('token')
+            return{
+                ...state,
+                usuario: null,
+                token: null,
+                autenticado: null,
             }
 
 

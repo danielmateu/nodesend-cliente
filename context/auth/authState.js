@@ -1,7 +1,7 @@
 import { createContext, useReducer } from 'react'
 import authContext from './authContext';
 import authReducer from './authReducer';
-import { LIMPIAR_ALERTA, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from 'types';
+import { CERRANDO_SESION, CERRAR_SESION, LIMPIAR_ALERTA, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from 'types';
 
 
 import clientAxios from 'config/axios';
@@ -96,13 +96,14 @@ const AuthState = ({ children }) => {
         }
     }
 
-    //Usuario Autenticado
-    // const usuarioAutenticado = (nombre) => {
-    //     dispatch({
-    //         type: USUARIO_AUTENTICADO,
-    //         payload: nombre
-    //     })
-    // }
+    //Close sesion
+    const cerrarSesion = () => {
+        dispatch({
+            type: CERRAR_SESION,
+        })
+
+        // console.log('Cerrar Sesion');
+    }
 
     return (
         <authContext.Provider
@@ -113,7 +114,8 @@ const AuthState = ({ children }) => {
                 mensaje: state.mensaje,
                 registrarUsuario,
                 usuarioAutenticado,
-                iniciarSesion
+                iniciarSesion,
+                cerrarSesion,
             }}
         >
             {children}
