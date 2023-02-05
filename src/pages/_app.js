@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
-import appState from 'context/app/appState'
+import AppState from 'context/app/appState'
 import AuthState from 'context/auth/authState'
+
 
 
 export default function App({ Component, pageProps }) {
@@ -8,9 +9,9 @@ export default function App({ Component, pageProps }) {
   return (
 
     <AuthState>
-      <appState>
+      <AppState>
         <Component {...pageProps} />
-      </appState>
+      </AppState>
     </AuthState>
   )
 }

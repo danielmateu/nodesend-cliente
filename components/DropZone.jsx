@@ -1,11 +1,16 @@
 import clientAxios from "config/axios"
-import { useCallback } from "react"
+import appContext from "context/app/appContext"
+import { useCallback, useContext } from "react"
 import { useDropzone } from "react-dropzone"
 
 export const DropZone = () => {
 
+    const AppContext = useContext(appContext);
+
+    const { mostrarAlerta } = AppContext;
+    
     const onDropRejected = () => {
-        console.log('No se pudo subir');
+        mostrarAlerta('No se pudo subir, el límite se ha excedido');
     }
 
     const onDropAccepted = useCallback(async (acceptedFiles) => {

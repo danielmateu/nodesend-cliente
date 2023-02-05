@@ -1,5 +1,7 @@
+import { Alerta } from "components/Alerta";
 import { DropZone } from "components/DropZone";
 import { Layout } from "components/Layout";
+import appContext from "context/app/appContext";
 import authContext from "context/auth/authContext";
 import Link from "next/link";
 import { useContext, useEffect } from "react";
@@ -10,6 +12,11 @@ export default function Home() {
   //Extraer el Usuario autenticado del Storage
   const AuthContext = useContext(authContext);
   const { usuario, usuarioAutenticado } = AuthContext;
+
+  //Extraer el mensaje de error de archivo
+  const AppContext = useContext(appContext);
+  const { mensaje_archivo } = AppContext;
+
 
   useEffect(() => {
     usuarioAutenticado()
@@ -22,6 +29,7 @@ export default function Home() {
       <Layout>
         {/* <h1 className="font-semibold text-center p-4 hover:font-light transition-all">Hello world in NextJs</h1> */}
         <div className="md:w-4/5 xl:w-3/5 mx-auto ">
+          {mensaje_archivo && <Alerta/>}
           <div className="lg:flex hover:shadow-lg p-4 bg-white rounded-lg py-10 transition-all">
             <div className="md:flex-1 m-4 lg:mt-0">
               <DropZone/>
