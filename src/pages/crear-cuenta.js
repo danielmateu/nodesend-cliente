@@ -1,3 +1,4 @@
+import { Alerta } from 'components/Alerta'
 import { Layout } from 'components/Layout'
 import authContext from 'context/auth/authContext'
 import { useFormik } from 'formik'
@@ -10,7 +11,7 @@ const CrearCuenta = () => {
 
     //Accceder al state
     const AuthContext = useContext(authContext);
-    const { registrarUsuario, token } = AuthContext;
+    const { mensaje, registrarUsuario, token } = AuthContext;
 
     // console.log(token);
     // useEffect(() => {
@@ -43,6 +44,8 @@ const CrearCuenta = () => {
             {/* <h1>Crear-cuenta</h1> */}
             <div className="md:w-4/5 xl:w-3/5 mx-auto">
                 <h2 className="text-4xl text-gray-500 text-center">Crear Cuenta</h2>
+
+                
 
                 <div className="flex justify-center">
                     <div className="w-full max-w-lg">
@@ -106,7 +109,9 @@ const CrearCuenta = () => {
                                     ) : null
                                 }
                             </div>
-                            <input type="submit" value='Crear cuenta' className="w-full bg-green-200 hover:bg-green-300 transition-colors py-4 rounded mt-2" />
+                            <input type="submit" value='Crear cuenta' className="w-full bg-green-200 hover:bg-green-300 transition-colors py-4 rounded my-2" />
+
+                            {mensaje && <Alerta/>}
                         </form>
                     </div>
                 </div>

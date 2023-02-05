@@ -1,6 +1,6 @@
 // const initialState = {}
 
-import { USUARIO_AUTENTICADO } from "types"
+import { REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from "types"
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -10,6 +10,11 @@ export default (state, action) => {
             return {
                 ...state,
                 usuario: action.payload,
+            }
+        case REGISTRO_EXITOSO:
+            return {
+                ...state,
+                mensaje: action.payload,
             }
 
 
