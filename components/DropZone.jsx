@@ -7,40 +7,32 @@ export const DropZone = () => {
 
     const AppContext = useContext(appContext);
 
-    const { mostrarAlerta } = AppContext;
-    
+    const { mostrarAlerta, subirArchivo, cargando, crearEnlace } = AppContext;
+
     const onDropRejected = () => {
         mostrarAlerta('No se pudo subir, el límite se ha excedido');
     }
 
     const onDropAccepted = useCallback(async (acceptedFiles) => {
-        console.log(acceptedFiles)
+        // console.log(acceptedFiles)
+
         //Crear un forma data
         const formData = new FormData()
         formData.append('archivo', acceptedFiles[0])
 
-        const resultado = await clientAxios.post('/api/archivos', formData)
-        console.log(resultado.data);
+        subirArchivo(formData, acceptedFiles[0].path)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    
-
     //Extraer contenido de Dropzone
-    const { acceptedFiles, getRootProps, getInputProps, isDragActive } = useDropzone({  onDropAccepted, onDropRejected, maxSize: 1000000 })
+    const { acceptedFiles, getRootProps, getInputProps, isDragActive } = useDropzone({ onDropAccepted, onDropRejected, maxSize: 1000000 })
     const archivos = acceptedFiles.map(archivo => (
         <li key={archivo.lastModified} className="bg-white flex-1 p-3 mb-4 shadow-lg rounded mt-2" >
             <p className="text-xl ">{archivo.path}</p>
             <p className="text-xl text-center ">{(archivo.size / Math.pow(1024, 2)).toFixed(2)} MB</p>
         </li>
     ))
-        //Creating link
-    const crearEnlace = () => {
-        console.log('Creando Enlace...');
-
-    }
-
-
-
+    
 
     return (
         <div className="flex md:flex-1 h-full flex-col items-center justify-center border-dashed border-4 border-gray-500 hover:border-gray-600 bg-gray-100 hover:bg-gray-200 rounded transition-all">
@@ -51,7 +43,9 @@ export const DropZone = () => {
                         {archivos}
                     </ul>
 
-                    <button className="bg-red-400 p-2 rounded hover:shadow-lg transition-all" onClick={crearEnlace}>Crear enlace</button>
+                    {cargando ? <p className="text-center text-2xl text-gray-400">Subiendo archivo...</p> : (
+                        <button className="bg-red-400 p-2 rounded hover:shadow-lg transition-all" onClick={crearEnlace}>Crear enlace</button>
+                    )}  
                 </div>
 
             ) : (
