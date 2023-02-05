@@ -1,3 +1,4 @@
+import { DropZone } from "components/DropZone";
 import { Layout } from "components/Layout";
 import authContext from "context/auth/authContext";
 import Link from "next/link";
@@ -23,7 +24,7 @@ export default function Home() {
         <div className="md:w-4/5 xl:w-3/5 mx-auto ">
           <div className="lg:flex hover:shadow-lg p-4 bg-white rounded-lg py-10 transition-all">
             <div className="md:flex-1 m-4 lg:mt-0">
-              <p>Dropzone Aqui</p>
+              <DropZone/>
             </div>
             <div className="md:flex-1 m-4 lg:mt-0">
               <h2 className="text-4xl">Compartir archivos de forma sencilla y privada</h2>
