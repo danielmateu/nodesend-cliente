@@ -1,7 +1,8 @@
 import { createContext, useReducer } from 'react'
 import authContext from './authContext';
 import authReducer from './authReducer';
-import { REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from 'types';
+import { LIMPIAR_ALERTA, REGISTRO_ERROR, REGISTRO_EXITOSO, USUARIO_AUTENTICADO } from 'types';
+
 
 import clientAxios from 'config/axios';
 
@@ -28,10 +29,22 @@ const AuthState = ({ children }) => {
                 type: REGISTRO_EXITOSO,
                 payload: respuesta.data.msg
             })
+
             
         }catch(error) {
-            console.log(error);
+            // console.log(error.response.data.msg);
+            dispatch({
+                type: REGISTRO_ERROR,
+                payload: error.response.data.msg
+            })
         }
+
+        //Clean alert after 3 seconds 
+        setTimeout(() => {
+            dispatch({
+                type: LIMPIAR_ALERTA
+            })
+        },3000);
     }
 
     //Usuario Autenticado
