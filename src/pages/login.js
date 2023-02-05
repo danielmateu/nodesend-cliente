@@ -21,7 +21,7 @@ const Login = () => {
     if(autenticado){
       router.push('/');
     }
-  }, [autenticado])
+  }, [autenticado, router])
   
 
   //Formulario y validación con Formik y Yup

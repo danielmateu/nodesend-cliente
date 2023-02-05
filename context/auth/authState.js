@@ -5,6 +5,7 @@ import { LIMPIAR_ALERTA, LOGIN_ERROR, LOGIN_EXITOSO, REGISTRO_ERROR, REGISTRO_EX
 
 
 import clientAxios from 'config/axios';
+import tokenAuth from 'config/tokenAuth';
 
 
 const AuthState = ({ children }) => {
@@ -73,13 +74,35 @@ const AuthState = ({ children }) => {
         },3000);
     }
 
-    //Usuario Autenticado
-    const usuarioAutenticado = (nombre) => {
-        dispatch({
-            type: USUARIO_AUTENTICADO,
-            payload: nombre
-        })
+    //Return the user authenticated for the JWT
+    const usuarioAutenticado = async () => {
+        const token = localStorage.getItem('token');
+        if(token) {
+            //Function to send the token by headers
+            tokenAuth(token);
+        }
+
+        try {
+            const respuesta = await clientAxios.get('/api/auth');
+            // console.log(respuesta);
+            if(respuesta.data.usuario) {
+                dispatch({
+                    type: USUARIO_AUTENTICADO,
+                    payload: respuesta.data.usuario
+                })
+            }
+        }catch(error){
+            console.log(error);
+        }
     }
+
+    //Usuario Autenticado
+    // const usuarioAutenticado = (nombre) => {
+    //     dispatch({
+    //         type: USUARIO_AUTENTICADO,
+    //         payload: nombre
+    //     })
+    // }
 
     return (
         <authContext.Provider
