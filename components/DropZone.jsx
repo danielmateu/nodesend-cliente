@@ -1,16 +1,15 @@
 import clientAxios from "config/axios"
-import { useCallback, useState } from "react"
+import { useCallback } from "react"
 import { useDropzone } from "react-dropzone"
-
-
 
 export const DropZone = () => {
 
-    // const [archivo, setArchivo] = useState({})
+    const onDropRejected = () => {
+        console.log('No se pudo subir');
+    }
 
-    const onDrop = useCallback(async (acceptedFiles) => {
+    const onDropAccepted = useCallback(async (acceptedFiles) => {
         console.log(acceptedFiles)
-
         //Crear un forma data
         const formData = new FormData()
         formData.append('archivo', acceptedFiles[0])
@@ -19,8 +18,10 @@ export const DropZone = () => {
         console.log(resultado.data);
     }, [])
 
+    
+
     //Extraer contenido de Dropzone
-    const { acceptedFiles, getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+    const { acceptedFiles, getRootProps, getInputProps, isDragActive } = useDropzone({  onDropAccepted, onDropRejected, maxSize: 1000000 })
     const archivos = acceptedFiles.map(archivo => (
         <li key={archivo.lastModified} className="bg-white flex-1 p-3 mb-4 shadow-lg rounded mt-2" >
             <p className="text-xl ">{archivo.path}</p>
@@ -30,7 +31,7 @@ export const DropZone = () => {
         //Creating link
     const crearEnlace = () => {
         console.log('Creando Enlace...');
-        
+
     }
 
 
