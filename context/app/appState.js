@@ -1,6 +1,6 @@
 import clientAxios from 'config/axios';
 import { useContext, useReducer } from 'react';
-import { CREAR_ENLACE_ERROR, CREAR_ENLACE_EXITO, LIMPIAR_ALERTA, MOSTRAR_ALERTA, SUBIR_ARCHIVO_ERROR, SUBIR_ARCHIVO_EXITO, SUBIR_ARCHIVO } from 'types';
+import { CREAR_ENLACE_ERROR, CREAR_ENLACE_EXITO, LIMPIAR_ALERTA, MOSTRAR_ALERTA, SUBIR_ARCHIVO_ERROR, SUBIR_ARCHIVO_EXITO, SUBIR_ARCHIVO, LIMPIAR_STATE } from 'types';
 import appContext from './appContext';
 import appReducer from './appReducer';
 
@@ -92,6 +92,13 @@ const AppState = ({ children }) => {
         }
     }
 
+    const limpiarState = () => {
+        // console.log('Limpiando State');
+        dispatch({
+            type: LIMPIAR_STATE
+        })
+    }
+
     return (
         <appContext.Provider
             value={{
@@ -106,6 +113,7 @@ const AppState = ({ children }) => {
                 // password: state.password,
                 // autor: state.autor,
                 url: state.url,
+                limpiarState
             }}
         >
             {children}
