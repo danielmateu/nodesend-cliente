@@ -96,15 +96,15 @@ const AppState = ({ children }) => {
         <appContext.Provider
             value={{
                 mostrarAlerta,
-                mensaje_archivo: state.mensaje_archivo,
-                nombre: state.nombre,
-                nombre_original: state.nombre_original,
                 subirArchivo,
-                cargando: state.cargando,
                 crearEnlace,
-                descargas: state.descargas,
-                password: state.password,
-                autor: state.autor,
+                // mensaje_archivo: state.mensaje_archivo,
+                // nombre: state.nombre,
+                // nombre_original: state.nombre_original,
+                // cargando: state.cargando,
+                // descargas: state.descargas,
+                // password: state.password,
+                // autor: state.autor,
                 url: state.url,
             }}
         >

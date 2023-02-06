@@ -27,13 +27,19 @@ const appReducer = (state = initialState, action) => {
                 nombre_original: action.payload.nombre_original,
                 cargando: null
             }
-            case SUBIR_ARCHIVO_ERROR:
-                return {
-                    ...state,
-                    mensaje_archivo: action.payload,
-                    cargando: null
+        case SUBIR_ARCHIVO_ERROR:
+            return {
+                ...state,
+                mensaje_archivo: action.payload,
+                cargando: null
             }
-        
+
+        case CREAR_ENLACE_EXITO:
+            return {
+                ...state,
+                url: action.payload
+            }
+
         default: state
 
     }

@@ -44,7 +44,7 @@ export const DropZone = () => {
                     </ul>
 
                     {cargando ? <p className="text-center text-2xl text-gray-400">Subiendo archivo...</p> : (
-                        <button className="bg-red-400 p-2 rounded hover:shadow-lg transition-all" onClick={crearEnlace}>Crear enlace</button>
+                        <button className="bg-red-400 p-2 rounded hover:shadow-lg transition-all" onClick={() => crearEnlace()}>Crear enlace</button>
                     )}  
                 </div>
 
