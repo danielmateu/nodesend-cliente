@@ -1,13 +1,19 @@
 import clientAxios from "config/axios"
 import appContext from "context/app/appContext"
+import authContext from "context/auth/authContext"
 import { useCallback, useContext } from "react"
 import { useDropzone } from "react-dropzone"
+import { Formulario } from "./Formulario"
+
 
 export const DropZone = () => {
 
+    //Context de la app
     const AppContext = useContext(appContext);
-
     const { mostrarAlerta, subirArchivo, cargando, crearEnlace } = AppContext;
+    //Context de la autenticacion
+    const AuthContext = useContext(authContext);
+    const { usuario, autenticado } = AuthContext;
 
     const onDropRejected = () => {
         mostrarAlerta('No se pudo subir, el límite se ha excedido');
@@ -42,6 +48,8 @@ export const DropZone = () => {
                     <ul>
                         {archivos}
                     </ul>
+
+                    {autenticado ? <Formulario/>: ''}
 
                     {cargando ? <p className="text-center text-2xl text-gray-400">Subiendo archivo...</p> : (
                         <button className="bg-red-400 p-2 rounded hover:shadow-lg transition-all" onClick={() => crearEnlace()}>Crear enlace</button>

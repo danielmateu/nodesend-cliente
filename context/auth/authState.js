@@ -80,10 +80,9 @@ const AuthState = ({ children }) => {
             //Function to send the token by headers
             tokenAuth(token);
         }
-
         try {
             const respuesta = await clientAxios.get('/api/auth');
-            // console.log(respuesta);
+            
             if (respuesta.data.usuario) {
                 dispatch({
                     type: USUARIO_AUTENTICADO,

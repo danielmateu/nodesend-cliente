@@ -47,9 +47,6 @@ export default (state, action) => {
                 mensaje: null
             }
 
-        //Case close session
-        /* Removing the token from local storage and setting the user to null, token to null, autenticated to
-        false, and message to null. */
         case CERRAR_SESION:
             localStorage.removeItem('token')
             return {

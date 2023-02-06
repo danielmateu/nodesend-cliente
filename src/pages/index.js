@@ -20,8 +20,13 @@ export default function Home() {
 
 
   useEffect(() => {
-    usuarioAutenticado()
-  }, [usuarioAutenticado])
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      usuarioAutenticado()
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
 
 
