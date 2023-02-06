@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
+import appContext from 'context/app/appContext';
+import React, { useContext, useState } from 'react'
 
 export const Formulario = () => {
 
     const [password, setPassword] = useState(false);
+
+    //Context de la app
+    const AppContext = useContext(appContext);
+    const { agregarPassword, agregarDescargas } = AppContext;
+
     return (
         <div className='w-full my-4'>
             <div className='my-4'>
                 <label htmlFor="" className='text-gray-600'>Eliminar tras:</label>
-                <select name="" id="" className='appereance-none w-full bg-whiteborder  leading-none focus:outline-none p-2 shadow-lg'>
+                <select
+                    onChange={e => agregarDescargas(Number(e.target.value))}
+                    name=""
+                    id=""
+                    className='appereance-none w-full bg-whiteborder  leading-none focus:outline-none p-2 shadow-lg'>
                     <option value="" select disabled>--Seleccione--</option>
                     <option value="1">1 Descargas</option>
                     <option value="5">5 Descargas</option>
@@ -24,7 +34,9 @@ export const Formulario = () => {
 
                     {
                         password ? (
-                            <input type="password" className='appereance-none w-full bg-whiteborder  leading-none focus:outline-none p-2 shadow-lg' />
+                            <input type="password" className='appereance-none w-full bg-whiteborder  leading-none focus:outline-none p-2 shadow-lg'
+                            onChange={e => agregarPassword(e.target.value)}
+                            />
                         ) : null
                     }
                 </div>

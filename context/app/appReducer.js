@@ -1,4 +1,4 @@
-import { CREAR_ENLACE_ERROR, CREAR_ENLACE_EXITO, LIMPIAR_ALERTA, MOSTRAR_ALERTA, SUBIR_ARCHIVO_ERROR, SUBIR_ARCHIVO_EXITO, SUBIR_ARCHIVO, LIMPIAR_STATE } from 'types';
+import { CREAR_ENLACE_ERROR, CREAR_ENLACE_EXITO, LIMPIAR_ALERTA, MOSTRAR_ALERTA, SUBIR_ARCHIVO_ERROR, SUBIR_ARCHIVO_EXITO, SUBIR_ARCHIVO, LIMPIAR_STATE, AGREGAR_PASSWORD, AGREGAR_DESCARGAS } from 'types';
 
 // Create AppReducer
 const appReducer = (state = initialState, action) => {
@@ -51,6 +51,18 @@ const appReducer = (state = initialState, action) => {
                 password: '',
                 autor: null,
                 url: ''
+            }
+
+        case AGREGAR_PASSWORD:
+            return {
+                ...state,
+                password: action.payload
+            }
+
+        case AGREGAR_DESCARGAS:
+            return {
+                ...state,
+                descargas: action.payload
             }
 
         default: state
