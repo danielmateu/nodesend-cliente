@@ -44,11 +44,11 @@ export const Header = () => {
             <div className='flex gap-2'>
                 {
                     usuario ? (
-                        <div className='flex gap-2'>
+                        <div className='flex gap-2 items-center'>
                             <p>Hola {usuario.nombre}</p>
                             <button
                                 onClick={() => cerrarSesion()}
-                                className='bg-red-300 hover:bg-red-400 px-2 rounded transition-colors'>
+                                className='bg-red-300 hover:bg-red-400 px-2 py-1 rounded transition-colors'>
                                 Cerrar Sesión
                             </button>
                         </div>

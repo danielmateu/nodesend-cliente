@@ -18,7 +18,7 @@ export const Formulario = () => {
                     name=""
                     id=""
                     className='appereance-none w-full bg-whiteborder  leading-none focus:outline-none p-2 shadow-lg'>
-                    <option value="" select disabled>--Seleccione--</option>
+                    <option value="" disabled>--Seleccione--</option>
                     <option value="1">1 Descargas</option>
                     <option value="5">5 Descargas</option>
                     <option value="10">10 Descargas</option>
