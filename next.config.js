@@ -6,7 +6,7 @@ const nextConfig = {
 module.exports = {
   nextConfig,
   env: {
-    backendURL: 'https://stormy-sea-94958.herokuapp.com/',
+    backendURL: 'https://obscure-thicket-63984.herokuapp.com/',
     frontEndURL: 'https://nuk-send.vercel.app/'
   }
 }
