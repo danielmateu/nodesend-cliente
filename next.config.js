@@ -4,9 +4,9 @@ const nextConfig = {
 }
 
 module.exports = {
-  nextConfig,
+  // nextConfig,
   env: {
-    backendURL: 'https://stormy-sea-94958.herokuapp.com/',
-    frontEndURL: 'https://nuk-send.vercel.app'
+    backendURL: 'http://localhost:4000',
+    frontEndURL: 'http://localhost:3000'
   }
 }
