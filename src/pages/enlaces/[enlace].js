@@ -1,8 +1,8 @@
+import { Alerta } from 'components/Alerta';
 import { Layout } from 'components/Layout'
 import clientAxios from 'config/axios';
-import { useState } from 'react';
-
-
+import appContext from 'context/app/appContext';
+import { useContext, useState } from 'react';
 
 export async function getServerSideProps({ params }) {
 
@@ -31,6 +31,10 @@ export async function getServerSidePaths() {
 // eslint-disable-next-line import/no-anonymous-default-export, react/display-name
 export default ({ enlace }) => {
 
+    //Context de la app
+    const AppContext = useContext(appContext);
+    const { mostrarAlerta, mensaje_archivo } = AppContext;
+
     const [tienePassword, setTienePassword] = useState(enlace.password);
     const [password, setPassword] = useState('')
     const [fileLink, setFileLink] = useState(enlace.archivo);
@@ -52,7 +56,7 @@ export default ({ enlace }) => {
             console.log(resultado.data, enlace)
 
         } catch (error) {
-            console.log(error.response.data.msg);
+            mostrarAlerta(error.response.data.msg);
         }
 
 
@@ -81,6 +85,7 @@ export default ({ enlace }) => {
                                         onChange={e => setPassword(e.target.value)}
                                     />
                                 </div>
+                                {mensaje_archivo && <Alerta />}
                                 <input type="submit" value='Validar Password' className="w-full bg-green-200 hover:bg-green-300 transition-colors py-4 rounded my-2" />
                             </form>
                         </div>

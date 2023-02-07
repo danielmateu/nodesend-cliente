@@ -41,7 +41,7 @@ export const DropZone = () => {
     
 
     return (
-        <div className="flex md:flex-1 h-full flex-col items-center justify-center border-dashed border-4 border-gray-500 hover:border-gray-600 bg-gray-100 hover:bg-gray-200 rounded transition-all">
+        <div className="flex md:flex-1 h-full flex-col items-center justify-center border-dashed border-4 border-gray-500 hover:border-gray-600 bg-gray-100 rounded transition-all">
             {acceptedFiles.length > 0 ? (
                 <div className="w-full p-4">
                     <h4 className="text-center text-2xl">Archivos agregados</h4>
@@ -52,7 +52,7 @@ export const DropZone = () => {
                     {autenticado ? <Formulario/>: ''}
 
                     {cargando ? <p className="text-center text-2xl text-gray-400">Subiendo archivo...</p> : (
-                        <button className="bg-red-400 p-2 rounded hover:shadow-lg transition-all" onClick={() => crearEnlace()}>Crear enlace</button>
+                        <button className="bg-red-300 hover:bg-red-400 w-full p-2 rounded hover:shadow-lg transition-all" onClick={() => crearEnlace()}>Crear enlace</button>
                     )}  
                 </div>
 

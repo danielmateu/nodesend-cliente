@@ -43,7 +43,7 @@ export default function Home() {
               onClick={() => navigator.clipboard.writeText(`${process.env.frontEndURL}/enlaces/${url}`)}
                 type="button"
                 className="bg-red-500 hover:bg-gray-900 w-full p-2 text-white uppercase font-bold mt-10 rounded-lg transition-all"
-              >Compiar enlace</button>
+              >Copiar enlace</button>
             </>
           ) : (
             <>

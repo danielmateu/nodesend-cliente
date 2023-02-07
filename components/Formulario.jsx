@@ -27,14 +27,14 @@ export const Formulario = () => {
             </div>
 
             <div className='mt-4'>
-                <div className="flex gap-2">
+                <div className="">
                     <label htmlFor="" className='text-gray-600 mr-2'>Proteger con contraseña</label>
                     <input type="checkbox"
                     onChange={() => setPassword(!password)} />
 
                     {
                         password ? (
-                            <input type="password" className='appereance-none w-full bg-whiteborder  leading-none focus:outline-none p-2 shadow-lg'
+                            <input type="password" className='my-2 appereance-none w-full bg-whiteborder  leading-none focus:outline-none p-2 shadow-lg'
                             onChange={e => agregarPassword(e.target.value)}
                             />
                         ) : null
