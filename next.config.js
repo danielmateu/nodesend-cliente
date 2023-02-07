@@ -1,12 +1,12 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   reactStrictMode: true,
-// }
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+}
 
 module.exports = {
-  // nextConfig,
+  nextConfig,
   env: {
-    backendURL: 'http://localhost:4000/',
-    frontEndURL: 'http://localhost:3000'
+    backendURL: 'https://stormy-sea-94958.herokuapp.com',
+    frontEndURL: 'https://nuk-send.vercel.app'
   }
 }
